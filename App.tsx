@@ -1,14 +1,13 @@
 //import liraries
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-
-import SignInScreen from './src/screens/authscreen/SignInScreen';
+import RootNavigator from './src/navigation/RootNavigator';
 
 // create a component
 const App = () => {
   return (
     <View style={styles.container}>
-      <SignInScreen />
+      <RootNavigator />
     </View>
   );
 };

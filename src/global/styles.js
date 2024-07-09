@@ -10,10 +10,31 @@ export const colors = {
   cardcomment: '#86939e',
   cardbackground: 'white',
   headerText: 'white',
+  black: '#000000',
 };
 
 export const parameters = {
   headerHeight: 40,
+
+  styleButton: {
+    backgroundColor: '#ff8c52',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#ff8c52',
+    height: 50,
+    paddingHorizontal: 20,
+    width: '100%',
+  },
+  titleStyle: {
+    color: 'white',
+    fontsize: 20,
+    fontWeight: 'bold',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop: -3,
+  },
 };
 
 export const titletext = {

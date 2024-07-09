@@ -1,32 +1,95 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {colors, parameters, title} from '../../global/styles';
 import Header from '../../components/Header';
-import {TextInput} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-// create a component
-const SignInScreen = () => {
+import CustomTextInput from '../../components/TextInput';
+import PressableButton from '../../components/Button';
+
+const SignInScreen = ({navigation}) => {
+  const [username, setUsername] = useState('');
+  const [isUsernameFocused, setIsUsernameFocused] = useState(false);
+  const [password, setPassword] = useState('');
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Header title={'SIgnIn'} type="arrow-left" />
-      <View style={{marginLeft: 20, marginTop: 10}}>
-        <Text style={title}>Sign In</Text>
-      </View>
+      <Header
+        isLeftIcon={true}
+        leftIcon="arrow-left"
+        onLeftIconClick={() => navigation.goBack()}
+        title={'Login'}
+        titleCenter={true}
+      />
       <View style={{alignItems: 'center', marginTop: 10}}>
         <Text style={styles.text1}>Please enter mail and password</Text>
         <Text style={styles.text1}>Register with your account</Text>
       </View>
-      <View style={{marginTop: 20}}>
+      <View style={{marginVertical: 20}}>
+        <CustomTextInput
+          leftIcon={'user'}
+          title={'Username'}
+          placeholder="Username"
+          value={username}
+          setValue={setUsername}
+          onFocus={() => setIsUsernameFocused(true)}
+          onBlur={() => setIsUsernameFocused(false)}
+          customStyle={isUsernameFocused && styles.inputFocused}
+        />
+        <CustomTextInput
+          title={'Password'}
+          placeholder="Password"
+          leftIcon={'key'}
+          value={password}
+          setValue={setPassword}
+          secureTextEntry={true}
+          type="password"
+          isPassword={true}
+          onFocus={() => setIsPasswordFocused(true)}
+          onBlur={() => setIsPasswordFocused(false)}
+          customStyle={isPasswordFocused && styles.inputFocused}
+        />
+      </View>
+      <View>
+        <PressableButton
+          text={'Login'}
+          onPress={() => navigation.navigate('Home')}
+        />
+      </View>
+      <View style={{alignItems: 'center', margin: 10}}>
+        <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
+          Forget Password ?
+        </Text>
+      </View>
+      <View style={{alignItems: 'center', margin: 10}}>
+        <Text
+          style={{...styles.text1, fontWeight: 'bold', color: colors.black}}>
+          OR
+        </Text>
+      </View>
+      <View style={{marginVertical: 10}}>
+        <PressableButton
+          text={'Sign In With Facebook'}
+          IconName={'facebook'}
+          customStyle={styles.customButtonStyle}
+        />
+      </View>
+      <View style={{marginVertical: 10}}>
+        <PressableButton
+          text={'Sign In With Google'}
+          IconName={'google'}
+          customStyle={styles.customButtonStyle2}
+        />
+      </View>
+      <View style={styles.tabview}>
         <View>
-          <TextInput style={styles.TextInput1} placeholder="Email" />
+          <Text style={styles.texttitle}> New on Xpressed Food ?</Text>
         </View>
-        <Animatable.View>
-          <TextInput style={styles.TextInput2} placeholder="Password" />
-        </Animatable.View>
-        <Animatable.View>
-          <TextInput style={styles.TextInput2} placeholder="Password" />
-        </Animatable.View>
+        <Pressable>
+          <Text style={[styles.texttitle, {fontWeight: '600', marginLeft: 5}]}>
+            Create a account
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -60,6 +123,26 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     paddingLeft: 15,
+  },
+  inputFocused: {
+    borderColor: colors.buttons,
+    borderWidth: 1.5,
+  },
+  customButtonStyle: {
+    backgroundColor: '#4285F4',
+  },
+  customButtonStyle2: {
+    backgroundColor: '#FBBC05',
+  },
+  texttitle: {
+    alignItems: 'center',
+    color: colors.black,
+    fontSize: 16,
+  },
+  tabview: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    margin: 10,
   },
 });
 
