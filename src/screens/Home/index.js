@@ -1,18 +1,48 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  Pressable,
+} from 'react-native';
 import Header from '../../components/Header';
 import {Icon, withBadge} from '@rneui/themed';
 import ToggleButton from '../../components/ToggleButton';
-import {colors} from '../../global/styles';
+import {colors, title} from '../../global/styles';
 import IconHeader from '../../components/IconHeader';
+
+import {filterdata} from '../../global/data';
+import {Image} from 'react-native';
 
 // create a component
 const Home = ({navigation}) => {
+  const [selectIndex, setSelectIndex] = useState(0);
   const handleToggle = value => {
     console.log('Toggle state:', value);
     // Implement your logic based on toggle state change here
   };
+
+  const renderItem = ({item}) => {
+    return (
+      <Pressable onPress={() => setSelectIndex(item.id)}>
+        <View style={styles.cardView}>
+          <Image source={item.image} style={styles.image} />
+          <Text
+            style={
+              selectIndex === item.id
+                ? {...styles.selectTitle}
+                : {...styles.title}
+            }>
+            {item.name}
+          </Text>
+        </View>
+      </Pressable>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Header
@@ -63,6 +93,22 @@ const Home = ({navigation}) => {
         <View style={{margin: 10}}>
           <IconHeader title={'Categories'} iconName={'silverware'} />
         </View>
+        <View>
+          <FlatList
+            data={filterdata}
+            renderItem={renderItem}
+            extraData={selectIndex}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        <View style={{margin: 10}}>
+          <IconHeader
+            title={'Free Delivery Now '}
+            iconName={'truck-delivery'}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -72,9 +118,6 @@ const Home = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#2c3e50',
   },
   text: {
     fontSize: 16,
@@ -87,6 +130,28 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
     marginHorizontal: 10,
+  },
+  title: {
+    fontSize: 16,
+    color: colors.black,
+    fontWeight: '500',
+  },
+  selectTitle: {
+    fontSize: 16,
+    color: colors.buttons,
+    fontWeight: '800',
+  },
+  image: {
+    width: 60,
+    height: 60,
+    resizeMode: 'contain',
+    backgroundColor: 'white',
+    borderRadius: 40,
+  },
+  cardView: {
+    margin: 5,
+    paddingHorizontal: 5,
+    alignItems: 'center',
   },
 });
 

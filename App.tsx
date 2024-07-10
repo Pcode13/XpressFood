@@ -1,14 +1,17 @@
 //import liraries
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 import RootNavigator from './src/navigation/RootNavigator';
 
 // create a component
 const App = () => {
   return (
-    <View style={styles.container}>
-      <RootNavigator />
-    </View>
+    <GestureHandlerRootView style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <RootNavigator />
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 };
 
