@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import Header from '../../components/Header';
 import {Icon, withBadge} from '@rneui/themed';
@@ -22,16 +23,18 @@ import FoodCard from '../../components/FoodCard';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const Home = ({navigation}) => {
   const [selectIndex, setSelectIndex] = useState(0);
+  const [isDelivery, setIsDelivery] = useState('');
   const handleToggle = value => {
     console.log('Toggle state:', value);
+    setIsDelivery(value);
   };
-
+  console.log('Toggle state:', isDelivery);
   return (
     <View style={styles.container}>
       <Header
         isLeftIcon={true}
         leftIcon="menu"
-        onLeftIconClick={() => navigation.goBack()}
+        onLeftIconClick={() => navigation.toggleDrawer()}
         title={'XPressFood'}
         titleCenter={true}
         isRightIcon={true}
@@ -185,6 +188,15 @@ const Home = ({navigation}) => {
           ))}
         </View>
       </ScrollView>
+      {isDelivery === 'delivery' && (
+        <View style={styles.floatButtonView}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RestaurantMap')}>
+            <Icon name="place" type="material" color={colors.black} size={30} />
+            <Text style={{fontWeight: '500', color: colors.black}}>Map</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -239,6 +251,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 10,
+  },
+  floatButtonView: {
+    position: 'absolute',
+    bottom: 20,
+    right: 10,
+    backgroundColor: colors.buttons,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

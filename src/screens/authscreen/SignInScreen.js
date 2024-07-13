@@ -53,7 +53,7 @@ const SignInScreen = ({navigation}) => {
       <View>
         <PressableButton
           text={'Login'}
-          onPress={() => navigation.navigate('RootClientTabs')}
+          onPress={() => navigation.navigate('DrawerNavigation')}
         />
       </View>
       <View style={{alignItems: 'center', margin: 10}}>

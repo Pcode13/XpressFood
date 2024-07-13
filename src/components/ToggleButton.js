@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import {colors} from '../global/styles';
-
+import {useNavigation} from '@react-navigation/native';
 const ToggleButton = ({onToggle}) => {
+  const navigation = useNavigation();
   const [isDeliverySelected, setDeliverySelected] = useState(true);
   const [isPickupSelected, setPickupSelected] = useState(false);
 
@@ -13,9 +14,10 @@ const ToggleButton = ({onToggle}) => {
   };
 
   const handlePickupToggle = () => {
-    setPickupSelected(true);
+    // setPickupSelected(true);
     setDeliverySelected(false);
     onToggle && onToggle('pickup');
+    navigation.navigate('RestaurantMap');
   };
 
   return (
@@ -39,7 +41,7 @@ const ToggleButton = ({onToggle}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     marginVertical: 10,
   },
