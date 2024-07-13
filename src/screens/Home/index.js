@@ -6,7 +6,6 @@ import {
   StyleSheet,
   ScrollView,
   FlatList,
-  Pressable,
   Dimensions,
 } from 'react-native';
 import Header from '../../components/Header';
@@ -18,7 +17,6 @@ import CountDown from 'react-native-countdown-component';
 import CategoriesCards from '../../components/CategoriesCards';
 
 import {filterdata, resturantsdata} from '../../global/data';
-import {Image} from 'react-native';
 import FoodCard from '../../components/FoodCard';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import AuthStack from './authNavigator'; // Adjust the path as necessary
+import AuthStack from './authNavigator'; 
+import RootClientTabs from './ClientTabs';
 
 export default function RootNavigator() {
   return (
