@@ -7,40 +7,25 @@ import {
   ScrollView,
   FlatList,
   Pressable,
+  Dimensions,
 } from 'react-native';
 import Header from '../../components/Header';
 import {Icon, withBadge} from '@rneui/themed';
 import ToggleButton from '../../components/ToggleButton';
 import {colors, title} from '../../global/styles';
 import IconHeader from '../../components/IconHeader';
+import CountDown from 'react-native-countdown-component';
+import CategoriesCards from '../../components/CategoriesCards';
 
-import {filterdata} from '../../global/data';
+import {filterdata, resturantsdata} from '../../global/data';
 import {Image} from 'react-native';
+import FoodCard from '../../components/FoodCard';
 
-// create a component
+const SCREEN_WIDTH = Dimensions.get('window').width;
 const Home = ({navigation}) => {
   const [selectIndex, setSelectIndex] = useState(0);
   const handleToggle = value => {
     console.log('Toggle state:', value);
-    // Implement your logic based on toggle state change here
-  };
-
-  const renderItem = ({item}) => {
-    return (
-      <Pressable onPress={() => setSelectIndex(item.id)}>
-        <View style={styles.cardView}>
-          <Image source={item.image} style={styles.image} />
-          <Text
-            style={
-              selectIndex === item.id
-                ? {...styles.selectTitle}
-                : {...styles.title}
-            }>
-            {item.name}
-          </Text>
-        </View>
-      </Pressable>
-    );
   };
 
   return (
@@ -55,7 +40,10 @@ const Home = ({navigation}) => {
         onRightIconClick={{}}
       />
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
-        <ToggleButton onToggle={handleToggle} />
+        <View style={styles.header}>
+          <ToggleButton onToggle={handleToggle} />
+        </View>
+
         <View style={styles.filterView}>
           <View
             style={{
@@ -96,7 +84,16 @@ const Home = ({navigation}) => {
         <View>
           <FlatList
             data={filterdata}
-            renderItem={renderItem}
+            style={{marginHorizontal: 10}}
+            renderItem={({item}) => (
+              <View>
+                <CategoriesCards
+                  item={item}
+                  selectIndex={selectIndex}
+                  setSelectIndex={setSelectIndex}
+                />
+              </View>
+            )}
             extraData={selectIndex}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -108,6 +105,86 @@ const Home = ({navigation}) => {
             title={'Free Delivery Now '}
             iconName={'truck-delivery'}
           />
+        </View>
+
+        <View>
+          <View style={styles.optionView}>
+            <Text style={styles.options}>Options Changing in</Text>
+            <CountDown
+              until={3600}
+              size={15}
+              timeToShow={['M', 'S']}
+              timeLabels={{m: 'Min', s: 'Sec'}}
+            />
+          </View>
+
+          <FlatList
+            data={resturantsdata}
+            extraData={selectIndex}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View>
+                <FoodCard
+                  screenWidth={SCREEN_WIDTH * 0.8}
+                  images={item.image}
+                  restaurantName={item.restaurantName}
+                  faraway={item.faraway}
+                  businessAddress={item.businessAddress}
+                  averageReview={item.averageReview}
+                  numberReview={item.numberReview}
+                />
+              </View>
+            )}
+          />
+        </View>
+
+        <View style={{margin: 10}}>
+          <IconHeader title={'Promotion Available'} iconName={'sale'} />
+        </View>
+
+        <View>
+          <FlatList
+            data={resturantsdata}
+            extraData={selectIndex}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View>
+                <FoodCard
+                  screenWidth={SCREEN_WIDTH * 0.8}
+                  images={item.image}
+                  restaurantName={item.restaurantName}
+                  faraway={item.faraway}
+                  businessAddress={item.businessAddress}
+                  averageReview={item.averageReview}
+                  numberReview={item.numberReview}
+                />
+              </View>
+            )}
+          />
+        </View>
+
+        <View style={{margin: 10}}>
+          <IconHeader title={'Restaurant in your area'} iconName={'home'} />
+        </View>
+
+        <View style={{width: SCREEN_WIDTH, paddingTop: 10}}>
+          {resturantsdata.map(item => (
+            <View key={item.id} style={{paddingBottom: 20}}>
+              <FoodCard
+                screenWidth={SCREEN_WIDTH * 0.95}
+                images={item.image}
+                restaurantName={item.restaurantName}
+                faraway={item.faraway}
+                businessAddress={item.businessAddress}
+                averageReview={item.averageReview}
+                numberReview={item.numberReview}
+              />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -125,6 +202,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     margin: 2,
   },
+  header: {backgroundColor: colors.white, paddingBottom: 5},
   filterView: {
     backgroundColor: colors.grey5,
     padding: 5,
@@ -152,6 +230,17 @@ const styles = StyleSheet.create({
     margin: 5,
     paddingHorizontal: 5,
     alignItems: 'center',
+  },
+  options: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: colors.grey1,
+    marginTop: 10,
+  },
+  optionView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
   },
 });
 

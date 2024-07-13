@@ -12,7 +12,7 @@ const IconHeader = ({title, iconName}) => {
         name={iconName}
         type="material-community"
         color={colors.white}
-        size={25}
+        size={20}
       />
       <Text style={styles.title}>{title}</Text>
     </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
     alignContent: 'flex-start',
     borderRadius: 10,
-    padding: 5,
+    padding: 8,
   },
   title: {
     fontSize: 16,
