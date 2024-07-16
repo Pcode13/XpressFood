@@ -7,11 +7,13 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-import {Button, Icon, Avatar} from '@rneui/themed';
+import {Button, Icon, Avatar, Switch} from '@rneui/themed';
 import {colors} from '../global/styles';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+
 // create a component
 const DrawerContents = props => {
+  const [open, setOpen] = React.useState(false);
   return (
     <View style={styles.container}>
       <DrawerContentScrollView {...props}>
@@ -66,7 +68,7 @@ const DrawerContents = props => {
           icon={({color, size}) => (
             <Icon
               type="material-community"
-              name="cog_outline"
+              name="cog"
               color={colors.black}
               size={size}
             />
@@ -83,7 +85,33 @@ const DrawerContents = props => {
             />
           )}
         />
+
+        <View style={{borderTopWidth: 1, borderTopColor: colors.grey5}}>
+          <Text style={styles.preferenceTxt}>Preference</Text>
+          <View style={styles.switchView}>
+            <Text style={styles.draktheme}>Dark Theme</Text>
+            <View style={{paddingRight: 10}}>
+              <Switch
+                value={open}
+                onValueChange={setOpen}
+                thumbColor={'#000000'}
+                trackColor={{false: '#e1e8ee', true: '#e1e8ee'}}
+              />
+            </View>
+          </View>
+        </View>
       </DrawerContentScrollView>
+      <DrawerItem
+        label={'Sign out'}
+        icon={({color, size}) => (
+          <Icon
+            type="material-community"
+            name="logout"
+            color={colors.black}
+            size={size}
+          />
+        )}
+      />
     </View>
   );
 };
@@ -118,6 +146,26 @@ const styles = StyleSheet.create({
     backgroundColor: colors.buttons,
     justifyContent: 'space-evenly',
     paddingVertical: 4,
+  },
+  switchView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 5,
+  },
+  preferenceTxt: {
+    fontSize: 16,
+    paddingTop: 20,
+    color: colors.grey2,
+    paddingLeft: 20,
+    paddingRight: 5,
+  },
+  draktheme: {
+    fontSize: 16,
+    color: colors.grey2,
+    paddingLeft: 20,
+    fontWeight: 'bold',
+    paddingTop: 10,
   },
 });
 
