@@ -34,7 +34,14 @@ export const filterdata = [
     name: 'Sea Food',
     image: require('../assets/Image/seafood.png'),
   },
+  {
+    id: 7,
+    name: 'Ocean dish',
+    image: require('../assets/Image/oceandish.png'),
+  },
 ];
+
+
 
 export const resturantsdata = [
   {
