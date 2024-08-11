@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon} from '@rneui/themed';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Icon } from '@rneui/themed';
 import Home from '../screens/Home';
 import OrderScreen from '../screens/OrdersScreen';
-import SearchScreen from '../screens/SearchScreen';
 import MyAccount from '../screens/MyAccount';
-import {colors} from '../global/styles';
+import { colors } from '../global/styles';
+import ClientStack from './clientStack';
 const Tab = createBottomTabNavigator();
 
 export default function RootClientTabs() {
@@ -29,20 +29,20 @@ export default function RootClientTabs() {
           tabBarLabelStyle: {
             fontSize: 12,
           },
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="home" type="material" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={SearchScreen}
+        name="SearchScreenRoot"
+        component={ClientStack}
         options={{
           tabBarLabel: 'Search',
           tabBarLabelStyle: {
             fontSize: 12,
           },
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="search" type="material" color={color} size={size} />
           ),
         }}
@@ -55,7 +55,7 @@ export default function RootClientTabs() {
           tabBarLabelStyle: {
             fontSize: 12,
           },
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="view-list" type="material" color={color} size={size} />
           ),
         }}
@@ -68,7 +68,7 @@ export default function RootClientTabs() {
           tabBarLabelStyle: {
             fontSize: 12,
           },
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name="person" type="material" color={color} size={size} />
           ),
         }}

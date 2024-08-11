@@ -123,7 +123,7 @@ const SearchComponent = () => {
                             <TouchableOpacity
                                 onPress={() => {
                                     Keyboard.dismiss
-                                    // navigation.navigate("SearchResultScreen",{item:item.name})
+                                    navigation.navigate("SearchResultScreen",{item:item.name})
                                     setModalVisible(false)
                                     setTextInputFossued(true)
                                 }} >

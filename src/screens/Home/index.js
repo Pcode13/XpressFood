@@ -17,7 +17,7 @@ import IconHeader from '../../components/IconHeader';
 import CountDown from 'react-native-countdown-component';
 import CategoriesCards from '../../components/CategoriesCards';
 
-import {filterdata, resturantsdata} from '../../global/data';
+import {filterdata, restaurantsData} from '../../global/data';
 import FoodCard from '../../components/FoodCard';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -28,7 +28,7 @@ const Home = ({navigation}) => {
     console.log('Toggle state:', value);
     setIsDelivery(value);
   };
-  console.log('Toggle state:', isDelivery);
+  console.log('Toggle state:', restaurantsData);
   return (
     <View style={styles.container}>
       <Header
@@ -120,7 +120,7 @@ const Home = ({navigation}) => {
           </View>
 
           <FlatList
-            data={resturantsdata}
+            data={restaurantsData}
             extraData={selectIndex}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -147,7 +147,7 @@ const Home = ({navigation}) => {
 
         <View>
           <FlatList
-            data={resturantsdata}
+            data={restaurantsData}
             extraData={selectIndex}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -173,7 +173,7 @@ const Home = ({navigation}) => {
         </View>
 
         <View style={{width: SCREEN_WIDTH, paddingTop: 10}}>
-          {resturantsdata.map(item => (
+          {restaurantsData.map(item => (
             <View key={item.id} style={{paddingBottom: 20}}>
               <FoodCard
                 screenWidth={SCREEN_WIDTH * 0.95}

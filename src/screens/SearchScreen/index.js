@@ -11,7 +11,7 @@ import SearchCard from './components/SearchCard';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 // create a component
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
 
 
 
@@ -19,18 +19,18 @@ const SearchScreen = () => {
   return (
     <View style={styles.container}>
       <SearchComponent />
-      <View style={{ marginTop:10}}>
+      <View style={{ marginTop: 10 }}>
         <View>
           <FlatList
 
             data={filterdata}
-            renderItem={({ item }) => <SearchCard item={item} />} 
-   numColumns={2}
-   contentContainerStyle={{ gap: 5, padding: 12 }}
-   columnWrapperStyle={{ gap: 5 }}
+            renderItem={({ item }) => <SearchCard item={item} onPress={()=>navigation.navigate('SearchResultScreen',{item:item.name})} />}
+            numColumns={2}
+            contentContainerStyle={{ gap: 5, padding: 12 }}
+            columnWrapperStyle={{ gap: 5 }}
             ListHeaderComponent={
               <IconHeader title={'Top Categories'} iconName={'silverware'} />
-           }
+            }
             ListFooterComponent={<Footer />}
           />
         </View>
@@ -39,7 +39,7 @@ const SearchScreen = () => {
   );
 };
 
-const Footer = () => {
+const Footer = ({navigation}) => {
   return (
     <View style={{ marginTop: 20, marginBottom: 30 }}>
 
@@ -61,13 +61,13 @@ const Footer = () => {
                 >
 
                   <View style={styles.textView}>
-                    <Text style={{ color: colors.cardbackground,fontWeight:'600' }}>{item.name}</Text>
+                    <Text style={{ color: colors.cardbackground, fontWeight: '600' }}>{item.name}</Text>
                   </View>
                 </ImageBackground>
               </View>
             </TouchableWithoutFeedback>
           )}
-          contentContainerStyle={{ gap: 5, padding: 0}}
+          contentContainerStyle={{ gap: 5, padding: 0 }}
           columnWrapperStyle={{ gap: 5 }}
           horizontal={false}
           showsverticalScrollIndicator={false}
@@ -89,11 +89,11 @@ const Footer = () => {
 
 
 const styles = StyleSheet.create({
-container:{ flex: 1, marginBottom: 10},
+  container: { flex: 1, marginBottom: 10 },
   imageView: {
     borderRadius: 20,
     justifyContent: "center",
-   alignContent:'center',
+    alignContent: 'center',
     width: SCREEN_WIDTH * 0.44,
     height: SCREEN_WIDTH * 0.44,
     margin: SCREEN_WIDTH * 0.010,

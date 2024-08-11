@@ -43,7 +43,7 @@ export const filterdata = [
 
 
 
-export const resturantsdata = [
+export const restaurantsData = [
   {
     id: 1,
     restaurantName: "McDonald's",
@@ -64,12 +64,22 @@ export const resturantsdata = [
       {
         name: 'Big Mac',
         price: 5.99,
-        image: 'https://www.example.com/images/big_mac.jpg',
+        image: require('../assets/Image/burger.png'),
       },
       {
         name: 'French Fries',
         price: 2.99,
-        image: 'https://www.example.com/images/french_fries.jpg',
+        image: require('../assets/Image/frenchfries.png'),
+      },
+      {
+        name: "Soft Drinks",
+        price: 29.30,
+        image: require('../assets/Image/drinks.png')
+      },
+      {
+        name: "Roti Roll",
+        price: 70,
+        image: require('../assets/Image/roti-roll.png')
       },
     ],
   },
@@ -91,14 +101,24 @@ export const resturantsdata = [
     foodType: 'Fast Food',
     productData: [
       {
-        name: 'Fried Chicken Bucket',
-        price: 15.99,
-        image: 'https://www.example.com/images/fried_chicken_bucket.jpg',
+        name: 'Big Mac',
+        price: 5.99,
+        image: require('../assets/Image/burger.png'),
       },
       {
-        name: 'Mashed Potatoes',
-        price: 3.99,
-        image: 'https://www.example.com/images/mashed_potatoes.jpg',
+        name: 'French Fries',
+        price: 2.99,
+        image: require('../assets/Image/frenchfries.png'),
+      },
+      {
+        name: "Soft Drinks",
+        price: 29.30,
+        image: require('../assets/Image/drinks.png')
+      },
+      {
+        name: "Roti Roll",
+        price: 70,
+        image: require('../assets/Image/roti-roll.png')
       },
     ],
   },
@@ -120,14 +140,24 @@ export const resturantsdata = [
     foodType: 'Fast Food',
     productData: [
       {
-        name: 'King Steer Burger',
-        price: 6.99,
-        image: 'https://www.example.com/images/king_steer_burger.jpg',
+        name: 'Big Mac',
+        price: 5.99,
+        image: require('../assets/Image/burger.png'),
       },
       {
-        name: 'Steers Chips',
+        name: 'French Fries',
         price: 2.99,
-        image: 'https://www.example.com/images/steers_chips.jpg',
+        image: require('../assets/Image/frenchfries.png'),
+      },
+      {
+        name: "Soft Drinks",
+        price: 29.30,
+        image: require('../assets/Image/drinks.png')
+      },
+      {
+        name: "Roti Roll",
+        price: 70,
+        image: require('../assets/Image/roti-roll.png')
       },
     ],
   },
@@ -149,14 +179,24 @@ export const resturantsdata = [
     foodType: 'Pizza',
     productData: [
       {
-        name: 'Pepperoni Pizza',
-        price: 12.99,
-        image: 'https://www.example.com/images/pepperoni_pizza.jpg',
+        name: 'Big Mac',
+        price: 5.99,
+        image: require('../assets/Image/burger.png'),
       },
       {
-        name: 'Garlic Bread',
-        price: 4.99,
-        image: 'https://www.example.com/images/garlic_bread.jpg',
+        name: 'French Fries',
+        price: 2.99,
+        image: require('../assets/Image/frenchfries.png'),
+      },
+      {
+        name: "Soft Drinks",
+        price: 29.30,
+        image: require('../assets/Image/drinks.png')
+      },
+      {
+        name: "Roti Roll",
+        price: 70,
+        image: require('../assets/Image/roti-roll.png')
       },
     ],
   },
