@@ -22,7 +22,8 @@ const DrawerNavigation = () => {
         drawerLabelStyle: {
           fontSize: 16,
         },
-      }}>
+      }}
+      >
       <Drawer.Screen
         name="RootClientTabs"
         component={RootClientTabs}

@@ -7,7 +7,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 import { colors } from '../../global/styles';
 
 // create a component
-const SearchResultScreen = ({ route }) => {
+const SearchResultScreen = ({ route,navigation }) => {
 
     return (
         <View style={styles.container}>
@@ -27,7 +27,8 @@ const SearchResultScreen = ({ route }) => {
                             farAway ={item.faraway}
                             businessAddress ={item.businessAddress}
                             productData ={item.productData}
-                            // OnPressRestaurantCard ={()=>{navigation.navigate("RestaurantHomeScreen",{id:index,restaurant:item.restaurantName})}}
+                            OnPressRestaurantCard ={()=>{navigation.navigate("RestaurantHome",{id:index,restaurant:item.restaurantName})}}
+                          
                         />
                                     
                           )}
@@ -41,10 +42,6 @@ const SearchResultScreen = ({ route }) => {
                      showsVerticalScrollIndicator ={false}
                 />
         </View>
-            {/* <SearchResultCard
-                screenWidth={SCREEN_WIDTH}
-                images = {restaurantsData[0].image}
-            /> */}
         </View>
     );
 };
